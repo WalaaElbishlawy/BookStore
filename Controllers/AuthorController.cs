@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Controllers
 {
-    public class GenreController : Controller
+    public class AuthorController : Controller
     {
-        private readonly IGenreService Service;
-        public GenreController(IGenreService Service)
+        private readonly IAuthorService Service;
+        public AuthorController(IAuthorService Service)
         {
             this.Service = Service;
         }
@@ -17,14 +17,14 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Genre model)
+        public async Task<IActionResult> Add(Author model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             var result = await Service.Add(model);
-            if(result)
+            if (result)
             {
                 TempData["msg"] = "Add Successfully";
                 return RedirectToAction(nameof(Add));
@@ -40,7 +40,7 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(Genre model)
+        public async Task<IActionResult> Update(Author model)
         {
             if (!ModelState.IsValid)
             {

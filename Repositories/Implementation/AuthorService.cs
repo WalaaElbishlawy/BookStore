@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Repositories.Implementation
 {
-    public class GenreService : IGenreService
+    public class AuthorService : IAuthorService
     {
         private readonly DatabaseContext context;
-        public GenreService(DatabaseContext context)
+        public AuthorService(DatabaseContext context)
         {
             this.context = context;
         }
-        public async Task<bool> Add(Genre model)
+        public async Task<bool> Add(Author model)
         {
             try
             {
-                await context.Genre.AddAsync(model);
+                await context.Author.AddAsync(model);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -30,9 +30,9 @@ namespace BookStore.Repositories.Implementation
             try
             {
                 var data = await this.GetById(id);
-                if (data == null) 
-                       return false;
-                context.Genre.Remove(data);
+                if (data == null)
+                    return false;
+                context.Author.Remove(data);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -42,21 +42,21 @@ namespace BookStore.Repositories.Implementation
             }
         }
 
-        public async Task<IEnumerable<Genre>> GetAll()
+        public async Task<IEnumerable<Author>> GetAll()
         {
-            return await context.Genre.ToListAsync();
+            return await context.Author.ToListAsync();
         }
 
-        public async Task<Genre> GetById(int id)
+        public async Task<Author> GetById(int id)
         {
-            return await context.Genre.FindAsync(id);
+            return await context.Author.FindAsync(id);
         }
 
-        public async Task<bool> Update(Genre model)
+        public async Task<bool> Update(Author model)
         {
             try
             {
-                context.Genre.Update(model);
+                context.Author.Update(model);
                 await context.SaveChangesAsync();
                 return true;
             }
