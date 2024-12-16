@@ -18,4 +18,4 @@ It includes CRUD operations for managing:
   
   • Entity Framework Core (ORM)
   
-  • Bootstrap 5 (frontend)
+  • Bootstrap (frontend)
